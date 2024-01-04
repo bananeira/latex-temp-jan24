@@ -104,7 +104,7 @@
     \endtcolorbox
 }
 
-\newenvironment{remark}[1]{%
+\newenvironment{remark}[1]{
     \tcolorbox[
         noparskip,breakable,
         colback=LightCoral!20,colframe=DarkRed,
@@ -154,10 +154,10 @@
 % GETTER AND SETTER
 \newcommand{\setval}[1]{\pgfkeys{/variables/#1}}
 \newcommand{\getval}[1]{\pgfkeysvalueof{/variables/#1}}
-\newcommand{\declare}[1]{%
+\newcommand{\declare}[1]{
     \pgfkeys{
         /variables/#1.is family,
         /variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
-    }%
+    }
 }
 \declare{}

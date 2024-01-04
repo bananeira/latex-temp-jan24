@@ -1,0 +1,56 @@
+\documentclass[10pt]{article}
+
+\usepackage{../../../base/cover}
+\usepackage{../../../base/head}
+\usepackage{../../../base/commands}
+\usepackage{../../subject-specific/head}
+\usepackage{/D:/Workspace/git/latex-temp-jan24/homework/course/course-specific/course-config}
+
+\newcommand{\blattnr}{0}
+
+\begin{document}
+    \makecover
+
+    \begin{aufgabe}[0]
+        \begin{figure}[h]
+            \begin{center}
+                \begin{tikzpicture}[nodes= {draw, circle}, local bounding box= bb, baseline= (bb.center), scale= 0.9, align= center, node distance= 1cm]
+                    \node (S) at (0,0) {$S$};
+                    \node (B) [right= of S] {$B$};
+                    \node (A) [above= of B] {$A$};
+                    \node (C) [below= of B] {$C$};
+                    \node (D) [right= of A] {$D$};
+                    \node (E) [below= of D] {$E$};
+                    \node (F) [below= of E] {$F$};
+                    \node (G) [right= of E] {$G$};
+
+                    \draw[-{Stealth[length=2mm]}] (S) -> (A);
+                    \draw[-{Stealth[length=2mm]}] (S) -> (B);
+                    \draw[-{Stealth[length=2mm]}] (S) -> (C);
+
+                    \draw[-{Stealth[length=2mm]}] (B) -> (A);
+                    \draw[-{Stealth[length=2mm]}] (C) -> (B);
+
+                    \draw[-{Stealth[length=2mm]}] (A) -> (D);
+                    \draw[-{Stealth[length=2mm]}] (B) -> (E);
+                    \draw[-{Stealth[length=2mm]}] (C) -> (F);
+
+                    \draw[-{Stealth[length=2mm]}] (A) -> (E);
+                    \draw[-{Stealth[length=2mm]}] (D) -> (G);
+
+                    \draw[-{Stealth[length=2mm]}] (D) -> (B);
+                    \draw[-{Stealth[length=2mm]}] (E) -> (C);
+
+                    \draw[-{Stealth[length=2mm]}] (F) -> (G);
+
+                    \draw[-{Stealth[length=2mm]}] (G) -> (E);
+                \end{tikzpicture}
+            \end{center}
+            \caption{Graph $G$}
+            \label{fig:graph-g1}
+        \end{figure}
+
+        Betrachten Sie obigen Graphen $G$ aus~\autoref{fig:graph-g1}.
+        Wenden Sie jeweils das verlangte Verfahren an bzw. beantworten Sie die Frage \textbf{oder} begründen Sie, warum dies nicht geht.
+    \end{aufgabe}
+\end{document}

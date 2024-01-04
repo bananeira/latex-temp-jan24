@@ -1,0 +1,163 @@
+\PassOptionsToPackage{svgnames}{xcolor}
+\RequirePackage{../../../base/commands}
+
+% LANG (GER)
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[ngerman]{babel}
+\RequirePackage{hyphenat}
+\RequirePackage{csquotes}
+\MakeOuterQuote{"}
+
+% FORMATTING
+\RequirePackage[a4paper, margin=2cm, top=3cm]{geometry}
+\setlength{\parindent}{0pt}
+\linespread{1.15}
+\RequirePackage[shortlabels]{enumitem}
+\RequirePackage{changepage}
+\RequirePackage[table]{xcolor}
+\RequirePackage{color}
+\RequirePackage{pgfkeys}
+\RequirePackage{wrapfig}
+\RequirePackage{subcaption}
+\RequirePackage{thmtools}
+\RequirePackage{etoolbox}
+\RequirePackage[hidelinks, colorlinks=true, pdfborder={0 0 0}, linkcolor=Maroon]{hyperref}
+\RequirePackage{listofitems}
+\captionsetup[figure]{labelfont={bf, color=black}}
+\let\oldautoref\autoref
+
+\renewcommand{\autoref}[1]{\textbf{\oldautoref{#1}}}
+
+\renewcommand{\figureautorefname}{Abbildung}
+\renewcommand{\sectionautorefname}{Abschnitt}
+\renewcommand{\subsectionautorefname}{Unterabschnitt}
+\renewcommand{\chapterautorefname}{Kapitel}
+
+% CONSTRUCTING
+\RequirePackage{tikz}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings, snakes, positioning, arrows.meta}
+\RequirePackage{forest}
+\RequirePackage{tcolorbox}
+\RequirePackage{graphicx}
+\tcbuselibrary{skins,breakable}
+\usetikzlibrary{shadings,shadows}
+
+% FONT
+\RequirePackage{fontspec}
+\RequirePackage{newtx}
+\setsansfont{MerriweatherSans}[
+    Path=../../../assets/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+]
+\RequirePackage[T1]{fontenc}
+
+% BASIC MATH, CS
+\RequirePackage{mathtools}
+\RequirePackage{amsthm}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathrsfs}
+\RequirePackage{amstex}
+\RequirePackage{gauss}
+\RequirePackage{marvosym}
+\RequirePackage{blkarray}
+\RequirePackage{bigstrut}
+\RequirePackage{marginnote}
+\RequirePackage{polynom}
+\RequirePackage{cancel}
+\RequirePackage{stmaryrd}
+\RequirePackage[ruled, vlined, linesnumbered]{algorithm2e}
+\SetKwComment{Comment}{/* }{ */}
+
+% HEADER/FOOTER
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\RequirePackage{lastpage}
+
+\fancyhead[L]{\sffamily \bfseries \kursnr{ }\kuerzel{ }\veranstaltug}
+\fancyhead[R]{\sffamily Blatt{ }\blattnr}
+\fancyfoot[C]{\thepage \hspace{1pt} / \pageref{LastPage}}
+
+% COLORBOX EXAMPLES
+\newenvironment{definition}[1]{
+    \tcolorbox[
+        noparskip,breakable,colframe=Gray!50,
+        colbacklower=Tomato!25!LightCoral,
+        coltitle=DarkRed,
+        title=Definition: #1]
+    }{
+    \endtcolorbox
+}
+
+\newenvironment{example}[1]{
+    \tcolorbox[
+        noparskip,breakable,
+        colback=LightGreen!60,colframe=DarkGreen!85,
+        colbacklower=LimeGreen!50!LightGreen!50,
+        title=Beispiel: #1]
+    }{
+    \endtcolorbox
+}
+
+\newenvironment{remark}[1]{%
+    \tcolorbox[
+        noparskip,breakable,
+        colback=LightCoral!20,colframe=DarkRed,
+        colbacklower=Tomato!25!LightCoral,
+        title=Anmerkung: #1]
+    }{
+    \endtcolorbox
+}
+
+% BASIC FORMATTING ENVS
+\newenvironment{aufgabe}[1][0]{
+    {\sffamily\bfseries Aufgabe \blattnr.#1}
+    \quad\slshape
+    }{
+}
+
+\setlist[enumerate, 1]{label={\sf \textbf{\arabic*.}}}
+\setlist[enumerate, 2]{label={\sf ( \alph* )}}
+
+\newenvironment{algo}[2][Algorithm,label]{
+    \setsepchar{,}
+    \readlist\algoArgs{#1}
+    \begin{minipage}{\linewidth}\begin{algorithm}[H]\caption{\textsc{\algoArgs[1]}}
+    }{
+    \label{alg:\algoArgs[2]}\end{algorithm}\end{minipage}
+}
+
+\forestset{
+    dg edges/.style={for tree={parent anchor=south, child anchor=north,align=center,base=bottom,where n children=0{tier=word,edge=dotted}{}}},
+}
+
+% BASIC THEOREM SPACES
+\theoremstyle{remark}
+\newenvironment{beweis}{
+    \inbeweistrue \begin{proof}[\textsc{Beweis}]
+    }{
+    \end{proof}\inbeweisfalse
+}
+
+\newenvironment{gegenbeweis}{
+    \inbeweistrue \renewcommand\qedsymbol{$\smashtimes$}\begin{proof}[\textsc{Gegenbeweis}]
+    }{
+    \end{proof}\renewcommand\qedsymbol{$\square$}\inbeweisfalse
+}
+
+% UTIL
+% GETTER AND SETTER
+\newcommand{\setval}[1]{\pgfkeys{/variables/#1}}
+\newcommand{\getval}[1]{\pgfkeysvalueof{/variables/#1}}
+\newcommand{\declare}[1]{%
+    \pgfkeys{
+        /variables/#1.is family,
+        /variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
+    }%
+}
+\declare{}

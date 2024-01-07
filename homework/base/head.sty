@@ -12,6 +12,7 @@
 \RequirePackage[a4paper, margin=2cm, top=3cm]{geometry}
 \setlength{\parindent}{0pt}
 \linespread{1.15}
+\def\arraystretch{1.15}
 \RequirePackage[shortlabels]{enumitem}
 \RequirePackage{changepage}
 \RequirePackage[table]{xcolor}
@@ -23,10 +24,10 @@
 \RequirePackage{etoolbox}
 \RequirePackage[hidelinks, colorlinks=true, pdfborder={0 0 0}, linkcolor=Maroon]{hyperref}
 \RequirePackage{listofitems}
-\captionsetup[figure]{labelfont={bf, color=black}}
+\captionsetup[figure]{labelfont={sf, bf, color=black}}
 \let\oldautoref\autoref
 
-\renewcommand{\autoref}[1]{\textbf{\oldautoref{#1}}}
+\renewcommand{\autoref}[1]{{\sffamily \textbf{\oldautoref{#1}}}}
 
 \renewcommand{\figureautorefname}{Abbildung}
 \renewcommand{\sectionautorefname}{Abschnitt}
@@ -35,7 +36,7 @@
 
 % CONSTRUCTING
 \RequirePackage{tikz}
-\usetikzlibrary{decorations.pathreplacing, decorations.markings, snakes, positioning, arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings, snakes, positioning, arrows.meta, backgrounds, fit}
 \RequirePackage{forest}
 \RequirePackage{tcolorbox}
 \RequirePackage{graphicx}
@@ -123,7 +124,7 @@
 
 
 \newenvironment{loesung}{
-    \begin{adjustwidth}{1.5em}{0em}\vskip 6pt
+    \begin{adjustwidth}{0.75em}{0em}
         }{
     \end{adjustwidth}
 }

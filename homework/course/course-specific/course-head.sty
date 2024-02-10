@@ -5,6 +5,7 @@
 
 % SUBJECT-SPECIFIC
 \RequirePackage{listings}
+\RequirePackage{lstautogobble}
 \RequirePackage{lstmisc}
 
 % LSTSTYLE
@@ -15,20 +16,23 @@
 \definecolor{keyword}{rgb}{0.55294118, 0.2745098, 1}
 
 \lstdefinestyle{lststyle}{
-    commentstyle=\color{codegray},
-    keywordstyle=\ttfamily\itshape,
-    numberstyle=\footnotesize\color{codegray},
-    basicstyle=\ttfamily\upshape,
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2,
+    commentstyle= \color{codegray},
+    keywordstyle= \ttfamily\itshape\color{codeblue},
+    numberstyle= \footnotesize\color{codegray},
+    basicstyle= \ttfamily\upshape,
+    backgroundcolor= \color{backcolour},
+    stringstyle= \ttfamily\color{codepurple},
+    breakatwhitespace= false,
+    autogobble= true,
+    breaklines= true,
+    captionpos= b,
+    keepspaces= true,
+    numbers= false,
+    numbersep= 4pt,
+    showspaces= false,
+    showstringspaces= false,
+    showtabs= true,
+    tabsize= 4,
 }
 \lstset{style=lststyle}
 

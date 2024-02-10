@@ -22,6 +22,7 @@
 \RequirePackage{subcaption}
 \RequirePackage{thmtools}
 \RequirePackage{etoolbox}
+\RequirePackage{ulem}
 \RequirePackage[hidelinks, colorlinks=true, pdfborder={0 0 0}, linkcolor=Maroon]{hyperref}
 \RequirePackage{listofitems}
 \captionsetup[figure]{labelfont={sf, bf, color=black}}
@@ -63,7 +64,6 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{mathrsfs}
-\RequirePackage{amstex}
 \RequirePackage{gauss}
 \RequirePackage{marvosym}
 \RequirePackage{blkarray}
@@ -82,7 +82,7 @@
 
 \fancyhead[L]{\sffamily \bfseries \kursnr{ }\kuerzel{ }\veranstaltug}
 \fancyhead[R]{\sffamily Blatt{ }\blattnr}
-\fancyfoot[C]{\sffamily \thepage \hspace{1pt} / \pageref{LastPage}}
+\fancyfoot[C]{\sffamily \thepage \hspace{1pt} / \pageref*{LastPage}}
 
 % COLORBOX EXAMPLES
 \newenvironment{definition}[1]{
@@ -117,11 +117,14 @@
 
 % BASIC FORMATTING ENVS
 \newenvironment{aufgabe}[1][0]{
+    \refstepcounter{aufgabenr}
     {\sffamily\bfseries Aufgabe \blattnr.#1}
     \quad\slshape
     }{
 }
 
+\newcounter{aufgabenr}[section]
+\renewcommand{\theaufgabenr}{Aufgabe~\blattnr.\arabic{aufgabenr}}
 
 \newenvironment{loesung}{
     \begin{adjustwidth}{0.75em}{0em}
